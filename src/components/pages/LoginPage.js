@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect} from 'react-redux';
 import LoginForm from '../forms/LoginForm'
+import { login } from '../../actions/auth'
 
 
 export class LoginPage extends Component {
 
-  // submit data
-  submit = data => {
-    console.log(data)
-  }
+  // submit data, if successful, redirect to home page
+  submit = data => this.props.login(data).then(() => this.props.history.push("/"))
 
   render() {
     return (
@@ -20,4 +21,9 @@ export class LoginPage extends Component {
   }
 }
 
-export default LoginPage
+
+LoginPage.propTypes = {
+  login: PropTypes.func.isRequired
+}
+
+export default connect(null, { login })(LoginPage)
