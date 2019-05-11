@@ -1,4 +1,5 @@
-import { userLoggedIn } from '../types'
+import { USER_LOGGED_IN, 
+         USER_LOGGED_OUT } from '../types'
 
 
 const initialState = {
@@ -8,8 +9,11 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
 
-  case userLoggedIn:
+  case USER_LOGGED_IN:
     return action.user;
+
+  case USER_LOGGED_OUT:
+    return {};
 
   default:
     return state
